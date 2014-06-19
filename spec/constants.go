@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
@@ -36,12 +35,15 @@ func main() {
 
 	fmt.Println("Largest integer constant is bigger than", float64(1<<255))
 	const (
-		start      = 1 << 255
-		next       = start + 1
-		difference = start - next
+		startInt = 1 << 255
+		nextInt  = startInt + 1
+		diffInt  = startInt - nextInt
 	)
-	fmt.Println("The difference between two huge consts is", difference)
-
-	fmt.Println("Largest floating point constant is bigger than 2 to the power of", 1<<31)
-	fmt.Println("which is about", math.Pow(2, 1<<31))
+	fmt.Println("The difference between two huge integer consts is", diffInt)
+	const (
+		startFloat = 1.0e1234
+		nextFloat  = 1.1e1234
+		diffFloat  = startFloat - nextFloat
+	)
+	fmt.Println("The difference between two huge floating consts is", diffFloat)
 }
