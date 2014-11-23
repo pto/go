@@ -43,9 +43,9 @@ func main() {
 	fmt.Println("The difference between two huge integer consts is", diffInt)
 
 	const (
-		startFloat = 1e32000
-		nextFloat  = 2e32000
-		diffFloat  = startFloat / nextFloat
+		oneFloat = 1e9994
+		twoFloat  = 6.2793694e9994
+		ratioFloat  = twoFloat / oneFloat
 	)
-	fmt.Println("The ratio between two huge floating consts is", diffFloat)
+	fmt.Println("The ratio between two huge floating consts is", ratioFloat)
 }
