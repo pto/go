@@ -17,4 +17,8 @@ func main() {
 	fmt.Println("unsafe.Sizeof(uintptr(0)) is", unsafe.Sizeof(uintptr(0)))
 	var y interface{}
 	fmt.Println("unsafe.Sizeof(interface{}) is", unsafe.Sizeof(y))
+	var z8 []int8
+	fmt.Println("unsafe.Sizeof([]int8) is", unsafe.Sizeof(z8))
+	var z64 []int8
+	fmt.Println("unsafe.Sizeof([]int64) is", unsafe.Sizeof(z64))
 }
