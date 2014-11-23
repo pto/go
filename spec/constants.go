@@ -34,12 +34,14 @@ func main() {
 	fmt.Println(1<<31, ui32, f32, f64 /* i32 */)
 
 	fmt.Println("Largest integer constant is bigger than", float64(1<<255))
+
 	const (
 		startInt = 1 << 255
 		nextInt  = startInt + 1
 		diffInt  = startInt - nextInt
 	)
 	fmt.Println("The difference between two huge integer consts is", diffInt)
+
 	const (
 		startFloat = 1e32000
 		nextFloat  = 2e32000
