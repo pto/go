@@ -44,7 +44,7 @@ func main() {
 
 	const (
 		oneFloat = 1e9994
-		twoFloat  = 6.2793694e9994
+		twoFloat  = 6.27936944e9994
 		ratioFloat  = twoFloat / oneFloat
 	)
 	fmt.Println("The ratio between two huge floating consts is", ratioFloat)
