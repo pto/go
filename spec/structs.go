@@ -35,16 +35,16 @@ func main() {
 	fmt.Println("values of T:", s.T, ps.T)
 	fmt.Println("calls on s and ps:")
 	s.doIt()
-	s.ptrDoIt() // automatic address of
+	s.ptrDoIt() // automatic address of (even though not in method set of S)
 	ps.doIt()   // automatic dereference
 	ps.ptrDoIt()
 
 	var x I
 	var px PI
-	x = s  // ok: method set of S includes receiver T
-	x = ps // ok: method set of *S includes receiver T
-	// px = s  // not ok: method set of S does not include receiver *T
-	px = ps // ok: method set of *S includes receiver *T
+	x = s  // ok: method set of S includes promoted method with receiver T
+	x = ps // ok: method set of *S includes promoted method with receiver T
+	// px = s  // not ok: method set of S does not include promoted method with receiver *T
+	px = ps // ok: method set of *S includes promoted method with receiver *T
 	fmt.Println("calls on interface variables:")
 	x.doIt()
 	px.ptrDoIt()
@@ -55,10 +55,10 @@ func main() {
 	*(s2.T) = 456
 	fmt.Println("values of *T:", *s2.T, *ps2.T)
 	fmt.Println("calls on s2 and ps2")
-	s2.doIt() // automatic dereference
+	s2.doIt() // automatic dereference of *T
 	s2.ptrDoIt()
-	ps2.doIt()    // double dereference?
-	ps2.ptrDoIt() // automatic deference
+	ps2.doIt()    // double dereference of ps2 and *T
+	ps2.ptrDoIt() // automatic deference of ps2
 
 	x = s2
 	x = ps2
