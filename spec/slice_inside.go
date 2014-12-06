@@ -7,13 +7,22 @@ import (
 
 func main() {
 	s := make([]int, 1, 2)
-	fmt.Println("s is", s)
-	fmt.Println("len(s) is", len(s), "and cap(s) is", cap(s))
+	fmt.Println("ACTION: make([]int, 1, 2)")
 	fmt.Println("unsafe.Sizeof(s) is", unsafe.Sizeof(s))
-	p := unsafe.Pointer(&s)
-	b := (*[unsafe.Sizeof(s)]byte)(p)
-	fmt.Printf("contents of s before append is % #x\n", *b)
+
+	ps := unsafe.Pointer(&s)
+	bs := (*[unsafe.Sizeof(s)]byte)(ps)
+
+	fmt.Println("s is", s, "with len(s) of", len(s), "and cap(s) of", cap(s))
+	fmt.Printf("contents of s is % #x\n", *bs)
+
 	s = append(s, 123)
-	fmt.Printf("contents of s after append is % #x\n", *b)
-	fmt.Println("s is", s)
+	fmt.Println("ACTION: append(s, 123)")
+	fmt.Println("s is", s, "with len(s) of", len(s), "and cap(s) of", cap(s))
+	fmt.Printf("contents of s is % #x\n", *bs)
+
+	s = append(s, 456)
+	fmt.Println("ACTION: append(s, 456)")
+	fmt.Println("s is", s, "with len(s) of", len(s), "and cap(s) of", cap(s))
+	fmt.Printf("contents of s is % #x\n", *bs)
 }
