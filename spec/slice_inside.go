@@ -15,16 +15,25 @@ func main() {
 	ps := unsafe.Pointer(&s)
 	bs := (*[unsafe.Sizeof(s)]byte)(ps)
 
-	fmt.Println("s is", s, "with len(s) of", len(s), "and cap(s) of", cap(s))
+	fmt.Println("s is", s, "with len of", len(s), "and cap of", cap(s))
 	fmt.Printf("contents of s is % #x\n", *bs)
 
 	s = append(s, 123)
 	fmt.Println("ACTION: append(s, 123)")
-	fmt.Println("s is", s, "with len(s) of", len(s), "and cap(s) of", cap(s))
+	fmt.Println("s is", s, "with len of", len(s), "and cap of", cap(s))
 	fmt.Printf("contents of s is % #x\n", *bs)
 
 	s = append(s, 456)
 	fmt.Println("ACTION: append(s, 456)")
-	fmt.Println("s is", s, "with len(s) of", len(s), "and cap(s) of", cap(s))
+	fmt.Println("s is", s, "with len of", len(s), "and cap of", cap(s))
 	fmt.Printf("contents of s is % #x\n", *bs)
+
+	var a [3]int
+	sa := a[:]
+	fmt.Println("ACTION: sa = a[:]")
+	psa := unsafe.Pointer(&sa)
+	bsa := (*[unsafe.Sizeof(sa)]byte)(psa)
+	fmt.Println("sa is", sa, "with len of", len(sa), "and cap of", cap(sa))
+	fmt.Printf("contents of sa is % #x\n", *bsa)
+	fmt.Printf("address of a is %p\n", &a)
 }
