@@ -8,7 +8,9 @@ import (
 func main() {
 	s := make([]int, 1, 2)
 	fmt.Println("ACTION: make([]int, 1, 2)")
-	fmt.Println("unsafe.Sizeof(s) is", unsafe.Sizeof(s))
+	var i int
+	fmt.Println("unsafe.Sizeof(s) is", unsafe.Sizeof(s),
+		"which is 3 times", unsafe.Sizeof(i), "(unsafe.Sizeof(int))")
 
 	ps := unsafe.Pointer(&s)
 	bs := (*[unsafe.Sizeof(s)]byte)(ps)
