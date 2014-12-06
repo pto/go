@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	s := make([]int, 8)
+	s := make([]int, 1, 2)
+	fmt.Println("len(s) is", len(s), "and cap(s) is", cap(s))
 	fmt.Println("unsafe.Sizeof(s) is", unsafe.Sizeof(s))
 	p := unsafe.Pointer(&s)
 	b := (*[unsafe.Sizeof(s)]byte)(p)
