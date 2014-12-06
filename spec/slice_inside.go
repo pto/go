@@ -11,5 +11,5 @@ func main() {
 	fmt.Println("unsafe.Sizeof(s) is", unsafe.Sizeof(s))
 	p := unsafe.Pointer(&s)
 	b := (*[unsafe.Sizeof(s)]byte)(p)
-	fmt.Printf("contents of s is % #x\n", b)
+	fmt.Printf("contents of s is % #x\n", *b)
 }
