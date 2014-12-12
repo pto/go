@@ -19,7 +19,7 @@ func main() {
 		ui64 uint64     = 3.0
 		i64  int64      = 3.0
 		f32  float32    = 3.0
-		f64  float64    = 3.0
+		f64             = 3.0
 		c64  complex64  = 3.0
 		c128 complex128 = 3.0
 	)
@@ -43,9 +43,9 @@ func main() {
 	fmt.Println("The difference between two huge integer consts is", diffInt)
 
 	const (
-		oneFloat = 1e9994
-		twoFloat  = 6.27936944e9994
-		ratioFloat  = twoFloat / oneFloat
+		oneFloat   = 1e9994
+		twoFloat   = 6.27936944e9994
+		ratioFloat = twoFloat / oneFloat
 	)
 	fmt.Println("The ratio between two huge floating consts is", ratioFloat)
 }
