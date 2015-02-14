@@ -19,7 +19,7 @@ func main() {
 		ui64 uint64     = 3.0
 		i64  int64      = 3.0
 		f32  float32    = 3.0
-		f64             = 3.0
+		f64             = 3.0 // this is the default type for 3.0
 		c64  complex64  = 3.0
 		c128 complex128 = 3.0
 	)
@@ -31,12 +31,12 @@ func main() {
 	f64 = 2147483648.0
 	// i32 = 2147483648.0 // error
 
-	fmt.Println(1<<31, ui32, f32, f64 /* i32 */)
+	fmt.Println("1<<31 is", 1<<31, ui32, f32, f64 /* , i32 */)
 
-	fmt.Println("Largest integer constant is bigger than", float64(1<<255))
+	fmt.Println("Largest integer constant is bigger than", float64(1<<463))
 
 	const (
-		startInt = 1 << 255
+		startInt = 1 << 463
 		nextInt  = startInt + 1
 		diffInt  = startInt - nextInt
 	)
@@ -44,7 +44,7 @@ func main() {
 
 	const (
 		oneFloat   = 1e9994
-		twoFloat   = 6.27936944e9994
+		twoFloat   = 6.2793694463797e9994
 		ratioFloat = twoFloat / oneFloat
 	)
 	fmt.Println("The ratio between two huge floating consts is", ratioFloat)
