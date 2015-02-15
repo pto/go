@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Show characteristics of constants, plus a compiler limitation.
 func main() {
 	// Unusual, but valid literal
 	one := 00000000001

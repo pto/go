@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// Show that array indexes are declared and used in the customary order.
 func main() {
 	var x [1][2]int
 	x[0][0] = 1

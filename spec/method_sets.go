@@ -22,6 +22,9 @@ type IPT interface {
 	FuncOfPT()
 }
 
+// Show that the method set of *T includes the method set of T as well
+// as the method set of *T. But the method set of T does NOT include
+// the method set of *T.
 func main() {
 	t1 := T(42)
 	t2 := new(T)

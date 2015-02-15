@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// Show that slice indexes use the customary order, and behave as expected
+// for a slice of slices.
 func main() {
 	x := make([][]int, 1)
 	x[0] = make([]int, 2)

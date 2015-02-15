@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Show the odd behavior of interfaces set to a nil value.
 func main() {
 	var x interface{}
 	fmt.Println("nil interface equals nil:", x == nil)

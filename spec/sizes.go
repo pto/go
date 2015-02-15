@@ -5,6 +5,7 @@ import (
 	"unsafe"
 )
 
+// Show the sizes used on the current platform.
 func main() {
 	fmt.Println("unsafe.Sizeof(true) is", unsafe.Sizeof(true))
 	fmt.Println("unsafe.Sizeof(uint8(0)) is", unsafe.Sizeof(uint8(0)))
