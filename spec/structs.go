@@ -63,6 +63,7 @@ func main() {
 
 	var sp1, sp2 SP
 	sp1.T = new(T)
+	// sp1.T = 333 // not ok: no automatic dereference of embedded field
 	*(sp1.T) = 333
 	sp2.T = new(T)
 	*(sp2.T) = 444
