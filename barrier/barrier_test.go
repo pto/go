@@ -1,7 +1,6 @@
 package barrier
 
 import (
-	"fmt"
 	"runtime"
 	"testing"
 )
@@ -31,5 +30,7 @@ func testBarrier(t *testing.T, size int, steps int) {
 	if pre, post := d.CheckErrors(); pre > 0 || post > 0 {
 		t.Errorf("%d precheck and %d postcheck errors", pre, post)
 	}
-	fmt.Println("maxGoroutines", d.MaxGoroutines())
+	if max := d.MaxGoroutines(); max < size {
+		t.Errorf("expecting %d goroutines, but got %d", size, max)
+	}
 }
