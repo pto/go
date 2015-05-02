@@ -1,4 +1,4 @@
 go-examples
 ===========
 
-Sample programs exploring edge cases in Go
+Sample programs exploring Go
