@@ -1,4 +1,4 @@
 go-examples
 ===========
 
-Sample programs exploring Go
+Various programs exploring Go
