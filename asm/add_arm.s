@@ -1,4 +1,4 @@
-TEXT ·add(SB),0,$0-24
+TEXT ·Add64(SB),0,$0-24
 	MOVW	a_lo+0(FP), R2
 	MOVW	a_hi+4(FP), R3
 	MOVW	b_lo+8(FP), R4

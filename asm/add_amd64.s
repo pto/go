@@ -1,4 +1,4 @@
-TEXT ·add(SB),0,$0-24
+TEXT ·Add64(SB),0,$0-24
 	MOVQ	a+0(FP), AX
 	ADDQ	b+8(FP), AX
 	MOVQ	AX, ret+16(FP)
