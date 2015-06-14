@@ -23,7 +23,7 @@ func Stop(e Event) Process {
 	return nil
 }
 
-// Prefix returns the Process the accepts Event c and then acts like Process p
+// Prefix returns the Process that accepts Event c and then acts like Process p
 func Prefix(c Event, p Process) Process {
 	return func(e Event) Process {
 		if e == c {
@@ -36,7 +36,7 @@ func Prefix(c Event, p Process) Process {
 	}
 }
 
-// Choice2 returns the Process that is a choice between Events
+// Choice2 returns the Process that is a choice between Events c and d
 func Choice2(c Event, p Process, d Event, q Process) Process {
 	return func(e Event) Process {
 		if e == c {
@@ -53,7 +53,7 @@ func Choice2(c Event, p Process, d Event, q Process) Process {
 	}
 }
 
-// Interact runs Process p with the Event slice events
+// Interact runs Process p with Event slice events
 func Interact(events []Event, p Process) {
 	fmt.Println("Executing", events)
 	current := p
