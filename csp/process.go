@@ -4,22 +4,28 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
-// A Process is a function that takes an Event and returns a Process
+// A Process is a function that accepts an Event and returns a Process
 type Process func(Event) Process
 
 // An Event is a string from the alphabet of a Process
 type Event string
+type Events []Event
+
+func (events Events) String() string {
+	s := make([]string, 0, len(events))
+	for _, e := range events {
+		s = append(s, string(e))
+	}
+	return strings.Join(s, ", ")
+}
 
 // Stop is the Process that accepts no Events
 func Stop(e Event) Process {
-	if e == "END" {
-		fmt.Println("Stopped")
-	} else {
-		fmt.Println("Tried to send invalid event", e)
-		os.Exit(1)
-	}
+	fmt.Println("Tried to send invalid event", e, "to Stop")
+	os.Exit(1)
 	return nil
 }
 
@@ -54,14 +60,15 @@ func Choice2(c Event, p Process, d Event, q Process) Process {
 }
 
 // Interact runs Process p with Event slice events
-func Interact(events []Event, p Process) {
-	fmt.Println("Executing", events)
+func Interact(events Events, p Process) {
+	fmt.Println("-- Executing ‹", events, "›")
 	current := p
 	for _, e := range events {
+		if e == "√" {
+			fmt.Println("Successful termination")
+			return
+		}
 		current = current(e)
-	}
-	if current != nil {
-		fmt.Println("Did not reach Stop")
 	}
 }
 
@@ -81,8 +88,9 @@ func init() {
 }
 
 func main() {
-	Interact([]Event{"in2p", "large"}, VMC)
-	Interact([]Event{"in2p", "small", "out1p", "in1p", "in1p", "large",
-		"in1p", "small"}, VMC)
-	Interact([]Event{"in1p", "in1p", "in1p", "END"}, VMC)
+	Interact(Events{"in2p", "large", "√"}, VMC)
+	Interact(Events{"in2p", "small", "out1p", "in1p", "in1p", "large",
+		"in1p", "small", "√"}, VMC)
+	Interact(Events{"in1p", "in1p", "in1p", "√"}, VMC)
+	Interact(Events{"in1p", "in1p", "in1p", "in1p", "√"}, VMC)
 }
