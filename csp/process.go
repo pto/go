@@ -65,20 +65,24 @@ func Interact(events []Event, p Process) {
 	}
 }
 
-func main() {
-	// vend is a closure on itself, so that it can define itself recursively
-	var vend Process
-	vend = func(e Event) Process { return vend(e) }
-	vend = Choice2(
-		"in2p", Choice2(
-			"large", vend,
-			"small", Prefix("out1p", vend)),
-		"in1p", Choice2(
-			"small", vend,
-			"in1p", Choice2("large", vend, "in1p", Stop)))
+// VMC is a complicated vending machine
+var VMC Process
 
-	Interact([]Event{"in2p", "large"}, vend)
+func init() {
+	// VMC is a closure of itself, so it can be defined recursively
+	VMC = func(e Event) Process { return VMC(e) }
+	VMC = Choice2(
+		"in2p", Choice2(
+			"large", VMC,
+			"small", Prefix("out1p", VMC)),
+		"in1p", Choice2(
+			"small", VMC,
+			"in1p", Choice2("large", VMC, "in1p", Stop)))
+}
+
+func main() {
+	Interact([]Event{"in2p", "large"}, VMC)
 	Interact([]Event{"in2p", "small", "out1p", "in1p", "in1p", "large",
-		"in1p", "small"}, vend)
-	Interact([]Event{"in1p", "in1p", "in1p", "END"}, vend)
+		"in1p", "small"}, VMC)
+	Interact([]Event{"in1p", "in1p", "in1p", "END"}, VMC)
 }
