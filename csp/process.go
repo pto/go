@@ -65,7 +65,7 @@ func Interact(events []Event, p Process) {
 	}
 }
 
-// VMC is a complicated vending machine
+// VMC is a Process modeling a complicated vending machine
 var VMC Process
 
 func init() {
