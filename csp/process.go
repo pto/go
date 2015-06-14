@@ -53,7 +53,7 @@ func Choice2(c Event, p Process, d Event, q Process) Process {
 	}
 }
 
-// Interact runs the given Process with the given Event slice
+// Interact runs Process p with the Event slice events
 func Interact(events []Event, p Process) {
 	fmt.Println("Executing", events)
 	current := p
