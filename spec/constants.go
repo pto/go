@@ -34,19 +34,26 @@ func main() {
 
 	fmt.Println("1<<31 is", 1<<31, ui32, f32, f64 /* , i32 */)
 
-	fmt.Println("Largest integer constant is bigger than", float64(1<<463))
+	fmt.Println("Largest integer constant is bigger than", float64(1<<499))
 
 	const (
-		startInt = 1 << 463
+		startInt = 1 << 499
 		nextInt  = startInt + 1
-		diffInt  = startInt - nextInt
+		diffInt  = nextInt - startInt
 	)
 	fmt.Println("The difference between two huge integer consts is", diffInt)
 
 	const (
 		oneFloat   = 1e9994
-		twoFloat   = 6.2793694463797e9994
+		twoFloat   = 6.2793694463797e9994 // old max floating constant
 		ratioFloat = twoFloat / oneFloat
 	)
 	fmt.Println("The ratio between two huge floating consts is", ratioFloat)
+
+	const (
+		bigFloat     = 1e9999999
+		biggerFloat  = 1e10000000
+		anotherRatio = biggerFloat / bigFloat
+	)
+	fmt.Println("The ratio between two truly enormous consts is", anotherRatio)
 }
