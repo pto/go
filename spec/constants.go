@@ -56,4 +56,11 @@ func main() {
 		anotherRatio = biggerFloat / bigFloat
 	)
 	fmt.Println("The ratio between two truly enormous consts is", anotherRatio)
+
+	const (
+		smallFloat   = 0.111111111122222222223333333333444444444455555555556666666666777777777788888888889999999999123456789
+		smallerFloat = 0.111111111122222222223333333333444444444455555555556666666666777777777788888888889999999999
+		diffFloat    = smallFloat - smallerFloat
+	)
+	fmt.Println("The difference between two small floats is", diffFloat)
 }
