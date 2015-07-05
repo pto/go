@@ -7,7 +7,7 @@ import (
 
 func main() {
 	fmt.Println("\t\x1b[1;36mJust Go!\x1b[0m")
-	target := time.Date(2015, 7, 5, 0, 0, 0, 0, time.UTC)
+	target := time.Date(2015, 7, 6, 0, 0, 0, 0, time.Local)
 	fmt.Printf("\t%s\n", target.Format(time.UnixDate))
 
 	var previous time.Time
