@@ -1,3 +1,4 @@
+// clock counts down to or up from a target time.
 package main
 
 import (
@@ -6,32 +7,41 @@ import (
 )
 
 func main() {
-	fmt.Println("\t\x1b[1;36m Simply Go!\x1b[0m")
+	const (
+		indent          = "\t"
+		highlight_start = "\x1b[1;36m"
+		highlight_end   = "\x1b[0m"
+	)
+	fmt.Print(indent, highlight_start, "Simply Go!", highlight_end, "\n")
 	target := time.Date(2015, 7, 6, 0, 0, 0, 0, time.Local)
-	fmt.Printf("\t%s\n", target.Format(time.UnixDate))
+	fmt.Print(indent, target.Format(time.UnixDate), "\n")
 
-	var previous time.Time
-	var days int
+	var (
+		previous time.Time
+		days     int
+		sign     string
+	)
 	for {
 		now := time.Now()
 		now = now.Add(time.Duration(-now.Nanosecond())) // truncate to second
 		if now != previous {
 			previous = now
 			remaining := target.Sub(now)
-			sign := "-"
-			if remaining < 0 {
-				sign = "+" // now is after target
+			if remaining >= 0 {
+				sign = "-" // countdown is "T minus..."
+			} else {
+				sign = "+" // count up is "T plus..."
 				remaining = -remaining
 			}
 			if remaining >= 24*time.Hour {
 				days = int(remaining / (24 * time.Hour))
 				remaining = remaining % (24 * time.Hour)
 			}
-			fmt.Printf("\t%s  %s", now.Format(time.UnixDate), sign)
+			fmt.Print(indent, now.Format(time.UnixDate), "  ", sign)
 			if days > 0 {
-				fmt.Printf("%dd", days)
+				fmt.Print(days, "d")
 			}
-			fmt.Printf("%v              \r", remaining)
+			fmt.Print(remaining, "          \r")
 		}
 		time.Sleep(50 * time.Millisecond)
 	}
