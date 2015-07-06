@@ -1,4 +1,4 @@
-go-examples
-===========
+go
+==
 
 Various programs exploring Go
