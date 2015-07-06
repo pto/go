@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println("\t\x1b[1;36mJust Go!\x1b[0m")
+	fmt.Println("\t\x1b[1;36m Simply Go!\x1b[0m")
 	target := time.Date(2015, 7, 6, 0, 0, 0, 0, time.Local)
 	fmt.Printf("\t%s\n", target.Format(time.UnixDate))
 
