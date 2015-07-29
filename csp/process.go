@@ -93,7 +93,7 @@ func init() {
 	// previous line is actually executed (the more complicated VMC that
 	// will be defined next).
 	//
-	// When the next line of code runs, it will evaluated the current
+	// When the next line of code runs, it will evaluate the current
 	// value of VMC (the closure of VMC over itself) and pass that value
 	// to Choice2 and Prefix. That value, like all non-pointer function
 	// arguments, will be passed by value, not by reference. So the value
@@ -111,10 +111,6 @@ func init() {
 	// closure over the variable VMC. So when the new value of VMC
 	// executes, it will ultimately reference not the old VMC, but the new
 	// VMC. And so we get the desired recursive definition.
-	//
-	// We could have avoided all this by passing a pointer to VMC instead
-	// of the value VMC. But where's the fun in that? And this version
-	// of VMC is closer in spirit to the original LISP program by Hoare.
 	VMC = Choice2(
 		"in2p", Choice2(
 			"large", VMC,
