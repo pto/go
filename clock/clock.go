@@ -13,7 +13,7 @@ func main() {
 		highlight_end   = "\x1b[0m"
 	)
 	fmt.Print(indent, highlight_start, "Just Go", highlight_end, "\n")
-	target := time.Date(2015, 9, 23, 8, 21, 18, 0, time.UTC)
+	target := time.Date(2015, 10, 1, 0, 0, 0, 0, time.Local)
 	fmt.Print(indent, target.Format(time.UnixDate), "\n")
 
 	var (
