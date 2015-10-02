@@ -51,14 +51,6 @@ func Choice2(c Event, p Process, d Event, q Process) Process {
 	}
 }
 
-// Interact runs Process p with the events of Trace t
-func Interact(t Trace, p Process) {
-	current := p
-	for _, e := range t {
-		current = current(e)
-	}
-}
-
 // IsTrace returns true if Trace t is a possible trace of Process p
 func IsTrace(t Trace, p Process) bool {
 	if t == nil || len(t) == 0 {

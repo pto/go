@@ -11,7 +11,8 @@ func TestCtSuccess(t *testing.T) {
 	if !IsTrace(Trace{"around", "up", "down", "around"}, CT(0)) {
 		t.Error("CT should go around, up, down and arround")
 	}
-	if !IsTrace(Trace{"up", "up", "up", "up", "down", "down", "down", "down", "around", "around", "around"}, CT(0)) {
+	if !IsTrace(Trace{"up", "up", "up", "up", "down", "down", "down", "down",
+		"around", "around", "around"}, CT(0)) {
 		t.Error("CT should go way up, back down and around")
 	}
 	if !IsTrace(Trace{"down", "around", "around", "up"}, CT(1)) {

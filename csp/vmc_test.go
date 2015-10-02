@@ -9,7 +9,8 @@ func TestVMCSuccess(t *testing.T) {
 	if !IsTrace(Trace{"in2p", "large"}, VMC) {
 		t.Error("VMC should vend a large item")
 	}
-	if !IsTrace(Trace{"in2p", "small", "out1p", "in1p", "in1p", "large", "in1p", "small"}, VMC) {
+	if !IsTrace(Trace{"in2p", "small", "out1p", "in1p", "in1p", "large",
+		"in1p", "small"}, VMC) {
 		t.Error("VMC should vend a small with change, a large and a small")
 	}
 	if !IsTrace(Trace{"in1p", "in1p", "in1p"}, VMC) {
