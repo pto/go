@@ -2,8 +2,6 @@
 package process
 
 import (
-	"fmt"
-	"os"
 	"strings"
 )
 
@@ -12,12 +10,14 @@ type Process func(Event) Process
 
 // An Event is a string from the alphabet of a Process
 type Event string
-type Events []Event
 
-func (events Events) String() string {
-	// Convert []Event to []String so we can use Join
-	s := make([]string, 0, len(events))
-	for _, e := range events {
+// A Trace is an array of Events
+type Trace []Event
+
+func (t Trace) String() string {
+	// Convert to []String so we can use Join
+	s := make([]string, 0, len(t))
+	for _, e := range t {
 		s = append(s, string(e))
 	}
 	return strings.Join(s, ", ")
@@ -25,8 +25,6 @@ func (events Events) String() string {
 
 // Stop is the Process that accepts no Events
 func Stop(e Event) Process {
-	fmt.Println("Tried to send invalid event", e, "to Stop")
-	os.Exit(1)
 	return nil
 }
 
@@ -34,11 +32,8 @@ func Stop(e Event) Process {
 func Prefix(c Event, p Process) Process {
 	return func(e Event) Process {
 		if e == c {
-			fmt.Println("Prefix accepted", e)
 			return p
 		}
-		fmt.Println("Tried to send invalid event", e, "to Prefix")
-		os.Exit(1)
 		return nil
 	}
 }
@@ -47,28 +42,30 @@ func Prefix(c Event, p Process) Process {
 func Choice2(c Event, p Process, d Event, q Process) Process {
 	return func(e Event) Process {
 		if e == c {
-			fmt.Println("Choice2 accepted", e)
 			return p
 		} else if e == d {
-			fmt.Println("Choice2 accepted", e)
 			return q
 		} else {
-			fmt.Println("Tried to send invalid event", e, "to Choice2")
-			os.Exit(1)
 			return nil
 		}
 	}
 }
 
-// Interact runs Process p with Event slice events
-func Interact(events Events, p Process) {
-	fmt.Println("-- Executing ‹", events, "›")
+// Interact runs Process p with the events of Trace t
+func Interact(t Trace, p Process) {
 	current := p
-	for _, e := range events {
-		if e == "√" {
-			fmt.Println("Successful termination")
-			return
-		}
+	for _, e := range t {
 		current = current(e)
+	}
+}
+
+// IsTrace returns true if Trace t is a possible trace of Process p
+func IsTrace(t Trace, p Process) bool {
+	if t == nil || len(t) == 0 {
+		return true
+	} else if p(t[0]) == nil {
+		return false
+	} else {
+		return IsTrace(t[1:], p(t[0]))
 	}
 }

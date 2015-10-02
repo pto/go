@@ -1,6 +1,6 @@
 // ct is an implementation of a process defined by an infinite set of
 // recursive equations
-package main
+package csp
 
 import (
 	. "github.com/pto/go/csp/process"
@@ -21,11 +21,4 @@ func init() {
 				"down", func(e Event) Process { return CT(n - 1)(e) })
 		}
 	}
-}
-
-func main() {
-	Interact(Events{"around", "up", "down", "around", "√"}, CT(0))
-	Interact(Events{"up", "up", "up", "up", "down", "down", "down", "down",
-		"around", "around", "around", "√"}, CT(0))
-	Interact(Events{"down", "around", "around", "up", "√"}, CT(1))
 }

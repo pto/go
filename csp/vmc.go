@@ -1,8 +1,7 @@
 // vmc is an implementation of a complex vending machine
-package main
+package csp
 
 import (
-	"fmt"
 	. "github.com/pto/go/csp/process"
 )
 
@@ -12,7 +11,6 @@ var VMC Process
 func init() {
 	// VMC is a closure of itself, so it can be defined recursively
 	VMC = func(e Event) Process {
-		fmt.Println("calling VMC closure for event", e)
 		return VMC(e)
 	}
 	// At this point the variable VMC holds a value that is a function
@@ -51,15 +49,4 @@ func init() {
 		"in1p", Choice2(
 			"small", VMC,
 			"in1p", Choice2("large", VMC, "in1p", Stop)))
-}
-
-func main() {
-	Interact(Events{"in2p", "large", "√"}, VMC)
-	Interact(Events{"in2p", "small", "out1p", "in1p", "in1p", "large",
-		"in1p", "small", "√"}, VMC)
-	Interact(Events{"in1p", "in1p", "in1p", "√"}, VMC)
-	Interact(Events{"in2p", "large", "in2p", "large", "in2p", "large", "√"},
-		VMC)
-	// Three 1p coins in a row lead to STOP
-	Interact(Events{"in1p", "in1p", "in1p", "in1p", "√"}, VMC)
 }
